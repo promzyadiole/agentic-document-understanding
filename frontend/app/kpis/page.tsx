@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Topbar from "@/components/topbar";
 import KpiTable from "@/components/kpi-table";
 import { getKpis } from "@/lib/api";
@@ -17,15 +20,22 @@ function SummaryCard({
   );
 }
 
-export default async function KpisPage() {
-  let data: any = null;
-  let error = "";
+export default function KpisPage() {
+  const [data, setData] = useState<any>(null);
+  const [error, setError] = useState("");
 
-  try {
-    data = await getKpis();
-  } catch (err: any) {
-    error = err.message || "Failed to load KPIs";
-  }
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const res = await getKpis();
+        setData(res);
+      } catch (err: any) {
+        setError(err.message || "Failed to load KPIs");
+      }
+    }
+
+    loadData();
+  }, []);
 
   const summary = data?.summary || {};
   const averages = summary?.averages || {};

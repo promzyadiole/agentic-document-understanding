@@ -1,24 +1,37 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Topbar from "@/components/topbar";
 import AgentTracePanel from "@/components/agent-trace-panel";
 import { exportGraph, getLatestDocument } from "@/lib/api";
 
-export default async function GraphPage() {
-  let graphData: any = null;
-  let latestDocumentData: any = null;
-  let error = "";
+export default function GraphPage() {
+  const [graphData, setGraphData] = useState<any>(null);
+  const [latestDocument, setLatestDocument] = useState<any>(null);
+  const [trace, setTrace] = useState<any>(null);
+  const [error, setError] = useState("");
 
-  try {
-    graphData = await exportGraph();
-  } catch (err: any) {
-    error = err.message || "Failed to export graph";
-  }
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const graph = await exportGraph();
+        setGraphData(graph);
+      } catch (err: any) {
+        setError(err.message || "Failed to export graph");
+      }
 
-  try {
-    latestDocumentData = await getLatestDocument();
-  } catch {}
+      try {
+        const latest = await getLatestDocument();
+        const doc = latest?.document;
+        setLatestDocument(doc);
+        setTrace(doc?.agent_trace || null);
+      } catch {
+        // keep page usable even if latest document lookup fails
+      }
+    }
 
-  const latestDocument = latestDocumentData?.document;
-  const trace = latestDocument?.agent_trace;
+    loadData();
+  }, []);
 
   return (
     <div className="space-y-6">
