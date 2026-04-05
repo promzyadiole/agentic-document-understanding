@@ -1,0 +1,692 @@
+[
+  {
+    "kpi_name": "field_coverage",
+    "value": 1.0,
+    "document_id": "37a0dc4a5d2846a5ac26a14912e7bd6e_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T13:57:38.213819",
+    "metadata": {
+      "total_fields": 6,
+      "filled_fields": 6
+    }
+  },
+  {
+    "kpi_name": "extraction_accuracy",
+    "value": 0.95,
+    "document_id": "37a0dc4a5d2846a5ac26a14912e7bd6e_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T13:57:38.213827",
+    "metadata": {
+      "proxy": "classification_confidence",
+      "document_type": "financial_report"
+    }
+  },
+  {
+    "kpi_name": "human_correction_rate",
+    "value": 0.0,
+    "document_id": "37a0dc4a5d2846a5ac26a14912e7bd6e_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T13:57:38.213831",
+    "metadata": {
+      "definition": "low_confidence_field_rate",
+      "low_confidence_fields": 0,
+      "total_fields": 6
+    }
+  },
+  {
+    "kpi_name": "schema_validity",
+    "value": 1.0,
+    "document_id": "37a0dc4a5d2846a5ac26a14912e7bd6e_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T13:57:38.213837",
+    "metadata": {
+      "validation_status": "pass",
+      "validation_score": 1.0,
+      "issue_count": 0
+    }
+  },
+  {
+    "kpi_name": "field_coverage",
+    "value": 1.0,
+    "document_id": "e8bb5b21e3524ea288c4330ea27ad7f8_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T15:46:27.917038",
+    "metadata": {
+      "total_fields": 6,
+      "filled_fields": 6
+    }
+  },
+  {
+    "kpi_name": "extraction_accuracy",
+    "value": 0.95,
+    "document_id": "e8bb5b21e3524ea288c4330ea27ad7f8_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T15:46:27.917047",
+    "metadata": {
+      "proxy": "classification_confidence",
+      "document_type": "financial_report"
+    }
+  },
+  {
+    "kpi_name": "human_correction_rate",
+    "value": 0.0,
+    "document_id": "e8bb5b21e3524ea288c4330ea27ad7f8_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T15:46:27.917051",
+    "metadata": {
+      "definition": "low_confidence_field_rate",
+      "low_confidence_fields": 0,
+      "total_fields": 6
+    }
+  },
+  {
+    "kpi_name": "schema_validity",
+    "value": 1.0,
+    "document_id": "e8bb5b21e3524ea288c4330ea27ad7f8_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T15:46:27.917057",
+    "metadata": {
+      "validation_status": "pass",
+      "validation_score": 1.0,
+      "issue_count": 0
+    }
+  },
+  {
+    "kpi_name": "field_coverage",
+    "value": 1.0,
+    "document_id": "7d2b0c1245c64bb29646a356c8d6cd2b_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T15:59:03.436591",
+    "metadata": {
+      "total_fields": 6,
+      "filled_fields": 6
+    }
+  },
+  {
+    "kpi_name": "extraction_accuracy",
+    "value": 0.99,
+    "document_id": "7d2b0c1245c64bb29646a356c8d6cd2b_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T15:59:03.436601",
+    "metadata": {
+      "proxy": "classification_confidence",
+      "document_type": "financial_report"
+    }
+  },
+  {
+    "kpi_name": "human_correction_rate",
+    "value": 0.0,
+    "document_id": "7d2b0c1245c64bb29646a356c8d6cd2b_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T15:59:03.436605",
+    "metadata": {
+      "definition": "low_confidence_field_rate",
+      "low_confidence_fields": 0,
+      "total_fields": 6
+    }
+  },
+  {
+    "kpi_name": "schema_validity",
+    "value": 1.0,
+    "document_id": "7d2b0c1245c64bb29646a356c8d6cd2b_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T15:59:03.436611",
+    "metadata": {
+      "validation_status": "pass",
+      "validation_score": 1.0,
+      "issue_count": 0
+    }
+  },
+  {
+    "kpi_name": "field_coverage",
+    "value": 1.0,
+    "document_id": "87b23fbb49a94e00b6842720a7136611_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T16:11:22.885020",
+    "metadata": {
+      "total_fields": 6,
+      "filled_fields": 6
+    }
+  },
+  {
+    "kpi_name": "extraction_accuracy",
+    "value": 0.99,
+    "document_id": "87b23fbb49a94e00b6842720a7136611_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T16:11:22.885028",
+    "metadata": {
+      "proxy": "classification_confidence",
+      "document_type": "financial_report"
+    }
+  },
+  {
+    "kpi_name": "human_correction_rate",
+    "value": 0.0,
+    "document_id": "87b23fbb49a94e00b6842720a7136611_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T16:11:22.885032",
+    "metadata": {
+      "definition": "low_confidence_field_rate",
+      "low_confidence_fields": 0,
+      "total_fields": 6
+    }
+  },
+  {
+    "kpi_name": "schema_validity",
+    "value": 1.0,
+    "document_id": "87b23fbb49a94e00b6842720a7136611_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T16:11:22.885037",
+    "metadata": {
+      "validation_status": "pass",
+      "validation_score": 1.0,
+      "issue_count": 0
+    }
+  },
+  {
+    "kpi_name": "field_coverage",
+    "value": 1.0,
+    "document_id": "ab82988a51984ce1b57f1097fe035b83_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T16:53:54.420344",
+    "metadata": {
+      "total_fields": 6,
+      "filled_fields": 6
+    }
+  },
+  {
+    "kpi_name": "extraction_accuracy",
+    "value": 0.99,
+    "document_id": "ab82988a51984ce1b57f1097fe035b83_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T16:53:54.420354",
+    "metadata": {
+      "proxy": "classification_confidence",
+      "document_type": "financial_report"
+    }
+  },
+  {
+    "kpi_name": "human_correction_rate",
+    "value": 0.0,
+    "document_id": "ab82988a51984ce1b57f1097fe035b83_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T16:53:54.420359",
+    "metadata": {
+      "definition": "low_confidence_field_rate",
+      "low_confidence_fields": 0,
+      "total_fields": 6
+    }
+  },
+  {
+    "kpi_name": "schema_validity",
+    "value": 1.0,
+    "document_id": "ab82988a51984ce1b57f1097fe035b83_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": null,
+    "timestamp": "2026-04-05T16:53:54.420364",
+    "metadata": {
+      "validation_status": "pass",
+      "validation_score": 1.0,
+      "issue_count": 0
+    }
+  },
+  {
+    "kpi_name": "field_coverage",
+    "value": 1.0,
+    "document_id": "f85d0990b76447cf92cfd706c85de59b_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T18:28:20.926461",
+    "metadata": {
+      "total_fields": 6,
+      "filled_fields": 6
+    }
+  },
+  {
+    "kpi_name": "extraction_accuracy",
+    "value": 0.99,
+    "document_id": "f85d0990b76447cf92cfd706c85de59b_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T18:28:20.926470",
+    "metadata": {
+      "proxy": "classification_confidence",
+      "document_type": "financial_report"
+    }
+  },
+  {
+    "kpi_name": "human_correction_rate",
+    "value": 0.0,
+    "document_id": "f85d0990b76447cf92cfd706c85de59b_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T18:28:20.926474",
+    "metadata": {
+      "definition": "low_confidence_field_rate",
+      "low_confidence_fields": 0,
+      "total_fields": 6
+    }
+  },
+  {
+    "kpi_name": "schema_validity",
+    "value": 1.0,
+    "document_id": "f85d0990b76447cf92cfd706c85de59b_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T18:28:20.926479",
+    "metadata": {
+      "validation_status": "pass",
+      "validation_score": 1.0,
+      "issue_count": 0
+    }
+  },
+  {
+    "kpi_name": "field_coverage",
+    "value": 1.0,
+    "document_id": "74fe3766f1db447e834a5a51e6923eec_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T18:52:05.227930",
+    "metadata": {
+      "total_fields": 6,
+      "filled_fields": 6
+    }
+  },
+  {
+    "kpi_name": "extraction_accuracy",
+    "value": 0.99,
+    "document_id": "74fe3766f1db447e834a5a51e6923eec_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T18:52:05.227939",
+    "metadata": {
+      "proxy": "classification_confidence",
+      "document_type": "financial_report"
+    }
+  },
+  {
+    "kpi_name": "human_correction_rate",
+    "value": 0.0,
+    "document_id": "74fe3766f1db447e834a5a51e6923eec_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T18:52:05.227943",
+    "metadata": {
+      "definition": "low_confidence_field_rate",
+      "low_confidence_fields": 0,
+      "total_fields": 6
+    }
+  },
+  {
+    "kpi_name": "schema_validity",
+    "value": 1.0,
+    "document_id": "74fe3766f1db447e834a5a51e6923eec_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T18:52:05.227948",
+    "metadata": {
+      "validation_status": "pass",
+      "validation_score": 1.0,
+      "issue_count": 0
+    }
+  },
+  {
+    "kpi_name": "field_coverage",
+    "value": 1.0,
+    "document_id": "028688e3769d42c7bee4f57a9cd25033_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T19:31:55.692833",
+    "metadata": {
+      "total_fields": 6,
+      "filled_fields": 6
+    }
+  },
+  {
+    "kpi_name": "extraction_accuracy",
+    "value": 0.99,
+    "document_id": "028688e3769d42c7bee4f57a9cd25033_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T19:31:55.692843",
+    "metadata": {
+      "proxy": "classification_confidence",
+      "document_type": "financial_report"
+    }
+  },
+  {
+    "kpi_name": "human_correction_rate",
+    "value": 0.0,
+    "document_id": "028688e3769d42c7bee4f57a9cd25033_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T19:31:55.692847",
+    "metadata": {
+      "definition": "low_confidence_field_rate",
+      "low_confidence_fields": 0,
+      "total_fields": 6
+    }
+  },
+  {
+    "kpi_name": "schema_validity",
+    "value": 1.0,
+    "document_id": "028688e3769d42c7bee4f57a9cd25033_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T19:31:55.692852",
+    "metadata": {
+      "validation_status": "pass",
+      "validation_score": 1.0,
+      "issue_count": 0
+    }
+  },
+  {
+    "kpi_name": "field_coverage",
+    "value": 1.0,
+    "document_id": "d330270f1f3245cdb2f66536d326f5f1_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T19:34:00.625864",
+    "metadata": {
+      "total_fields": 6,
+      "filled_fields": 6
+    }
+  },
+  {
+    "kpi_name": "extraction_accuracy",
+    "value": 0.99,
+    "document_id": "d330270f1f3245cdb2f66536d326f5f1_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T19:34:00.625873",
+    "metadata": {
+      "proxy": "classification_confidence",
+      "document_type": "financial_report"
+    }
+  },
+  {
+    "kpi_name": "human_correction_rate",
+    "value": 0.0,
+    "document_id": "d330270f1f3245cdb2f66536d326f5f1_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T19:34:00.625877",
+    "metadata": {
+      "definition": "low_confidence_field_rate",
+      "low_confidence_fields": 0,
+      "total_fields": 6
+    }
+  },
+  {
+    "kpi_name": "schema_validity",
+    "value": 1.0,
+    "document_id": "d330270f1f3245cdb2f66536d326f5f1_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T19:34:00.625894",
+    "metadata": {
+      "validation_status": "pass",
+      "validation_score": 1.0,
+      "issue_count": 0
+    }
+  },
+  {
+    "kpi_name": "field_coverage",
+    "value": 1.0,
+    "document_id": "9e4da1de9c1f4ac18fee496379ac3646_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-05T19:42:25.338113",
+    "metadata": {
+      "total_fields": 2,
+      "filled_fields": 2
+    }
+  },
+  {
+    "kpi_name": "extraction_accuracy",
+    "value": 0.95,
+    "document_id": "9e4da1de9c1f4ac18fee496379ac3646_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-05T19:42:25.338121",
+    "metadata": {
+      "proxy": "classification_confidence",
+      "document_type": "financial_report"
+    }
+  },
+  {
+    "kpi_name": "human_correction_rate",
+    "value": 0.5,
+    "document_id": "9e4da1de9c1f4ac18fee496379ac3646_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-05T19:42:25.338125",
+    "metadata": {
+      "definition": "low_confidence_field_rate",
+      "low_confidence_fields": 1,
+      "total_fields": 2
+    }
+  },
+  {
+    "kpi_name": "schema_validity",
+    "value": 0.5,
+    "document_id": "9e4da1de9c1f4ac18fee496379ac3646_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-05T19:42:25.338131",
+    "metadata": {
+      "validation_status": "warning",
+      "validation_score": 0.9,
+      "issue_count": 1
+    }
+  },
+  {
+    "kpi_name": "field_coverage",
+    "value": 1.0,
+    "document_id": "80c5b621b0c34e50a1afb26f46585bbe_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-05T20:44:39.701966",
+    "metadata": {
+      "total_fields": 2,
+      "filled_fields": 2
+    }
+  },
+  {
+    "kpi_name": "extraction_accuracy",
+    "value": 0.95,
+    "document_id": "80c5b621b0c34e50a1afb26f46585bbe_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-05T20:44:39.701978",
+    "metadata": {
+      "proxy": "classification_confidence",
+      "document_type": "financial_report"
+    }
+  },
+  {
+    "kpi_name": "human_correction_rate",
+    "value": 0.5,
+    "document_id": "80c5b621b0c34e50a1afb26f46585bbe_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-05T20:44:39.701982",
+    "metadata": {
+      "definition": "low_confidence_field_rate",
+      "low_confidence_fields": 1,
+      "total_fields": 2
+    }
+  },
+  {
+    "kpi_name": "schema_validity",
+    "value": 0.5,
+    "document_id": "80c5b621b0c34e50a1afb26f46585bbe_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-05T20:44:39.701989",
+    "metadata": {
+      "validation_status": "warning",
+      "validation_score": 0.9,
+      "issue_count": 1
+    }
+  },
+  {
+    "kpi_name": "field_coverage",
+    "value": 1.0,
+    "document_id": "e4a36f1307bf4598bd1b8ae6f4aafe59_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T21:04:29.105780",
+    "metadata": {
+      "total_fields": 6,
+      "filled_fields": 6
+    }
+  },
+  {
+    "kpi_name": "extraction_accuracy",
+    "value": 0.99,
+    "document_id": "e4a36f1307bf4598bd1b8ae6f4aafe59_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T21:04:29.105792",
+    "metadata": {
+      "proxy": "classification_confidence",
+      "document_type": "financial_report"
+    }
+  },
+  {
+    "kpi_name": "human_correction_rate",
+    "value": 0.0,
+    "document_id": "e4a36f1307bf4598bd1b8ae6f4aafe59_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T21:04:29.105797",
+    "metadata": {
+      "definition": "low_confidence_field_rate",
+      "low_confidence_fields": 0,
+      "total_fields": 6
+    }
+  },
+  {
+    "kpi_name": "schema_validity",
+    "value": 1.0,
+    "document_id": "e4a36f1307bf4598bd1b8ae6f4aafe59_vinci-consolidated-financial-statements-at-31-december-2025-en",
+    "project_id": "default",
+    "timestamp": "2026-04-05T21:04:29.105804",
+    "metadata": {
+      "validation_status": "pass",
+      "validation_score": 1.0,
+      "issue_count": 0
+    }
+  },
+  {
+    "kpi_name": "field_coverage",
+    "value": 1.0,
+    "document_id": "d620a892a835407c914b5086b394660b_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-05T21:23:12.245280",
+    "metadata": {
+      "total_fields": 2,
+      "filled_fields": 2
+    }
+  },
+  {
+    "kpi_name": "extraction_accuracy",
+    "value": 0.95,
+    "document_id": "d620a892a835407c914b5086b394660b_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-05T21:23:12.245291",
+    "metadata": {
+      "proxy": "classification_confidence",
+      "document_type": "financial_report"
+    }
+  },
+  {
+    "kpi_name": "human_correction_rate",
+    "value": 0.5,
+    "document_id": "d620a892a835407c914b5086b394660b_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-05T21:23:12.245295",
+    "metadata": {
+      "definition": "low_confidence_field_rate",
+      "low_confidence_fields": 1,
+      "total_fields": 2
+    }
+  },
+  {
+    "kpi_name": "schema_validity",
+    "value": 0.5,
+    "document_id": "d620a892a835407c914b5086b394660b_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-05T21:23:12.245302",
+    "metadata": {
+      "validation_status": "warning",
+      "validation_score": 0.9,
+      "issue_count": 1
+    }
+  },
+  {
+    "kpi_name": "field_coverage",
+    "value": 1.0,
+    "document_id": "b71d6c279bcf44de839a3e35998aeb44_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-05T21:35:55.049577",
+    "metadata": {
+      "total_fields": 2,
+      "filled_fields": 2
+    }
+  },
+  {
+    "kpi_name": "extraction_accuracy",
+    "value": 0.95,
+    "document_id": "b71d6c279bcf44de839a3e35998aeb44_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-05T21:35:55.049589",
+    "metadata": {
+      "proxy": "classification_confidence",
+      "document_type": "financial_report"
+    }
+  },
+  {
+    "kpi_name": "human_correction_rate",
+    "value": 0.5,
+    "document_id": "b71d6c279bcf44de839a3e35998aeb44_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-05T21:35:55.049593",
+    "metadata": {
+      "definition": "low_confidence_field_rate",
+      "low_confidence_fields": 1,
+      "total_fields": 2
+    }
+  },
+  {
+    "kpi_name": "schema_validity",
+    "value": 0.5,
+    "document_id": "b71d6c279bcf44de839a3e35998aeb44_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-05T21:35:55.049600",
+    "metadata": {
+      "validation_status": "warning",
+      "validation_score": 0.9,
+      "issue_count": 1
+    }
+  },
+  {
+    "kpi_name": "field_coverage",
+    "value": 1.0,
+    "document_id": "0236f6cee30348e395ce9c69702ae194_purchase-order (1)",
+    "project_id": "default",
+    "timestamp": "2026-04-05T21:46:45.068557",
+    "metadata": {
+      "total_fields": 4,
+      "filled_fields": 4
+    }
+  },
+  {
+    "kpi_name": "extraction_accuracy",
+    "value": 0.95,
+    "document_id": "0236f6cee30348e395ce9c69702ae194_purchase-order (1)",
+    "project_id": "default",
+    "timestamp": "2026-04-05T21:46:45.068581",
+    "metadata": {
+      "proxy": "classification_confidence",
+      "document_type": "purchase_order"
+    }
+  },
+  {
+    "kpi_name": "human_correction_rate",
+    "value": 0.25,
+    "document_id": "0236f6cee30348e395ce9c69702ae194_purchase-order (1)",
+    "project_id": "default",
+    "timestamp": "2026-04-05T21:46:45.068590",
+    "metadata": {
+      "definition": "low_confidence_field_rate",
+      "low_confidence_fields": 1,
+      "total_fields": 4
+    }
+  },
+  {
+    "kpi_name": "schema_validity",
+    "value": 0.0,
+    "document_id": "0236f6cee30348e395ce9c69702ae194_purchase-order (1)",
+    "project_id": "default",
+    "timestamp": "2026-04-05T21:46:45.068607",
+    "metadata": {
+      "validation_status": "fail",
+      "validation_score": 0.75,
+      "issue_count": 1
+    }
+  }
+]
