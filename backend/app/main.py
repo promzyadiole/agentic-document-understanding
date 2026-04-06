@@ -21,7 +21,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
-        "https://your-frontend-vercel-url.vercel.app",
+        "https://agentic-document-understanding-s88c.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
