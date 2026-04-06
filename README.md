@@ -1,85 +1,134 @@
 🏗️ ConstructionFlow AI
-Agentic Document Understanding for Construction Intelligence
+Agentic Document Intelligence for Construction & Procurement
 
 
 
 
-🚀 Overview
+🧭 TL;DR
 
-ConstructionFlow AI is an agentic AI system designed to process, understand, and extract insights from complex construction and procurement documents.
+ConstructionFlow AI is a production-grade agentic system that:
 
-It combines:
+🧠 reasons over documents using LLM-driven loops
+🔎 retrieves knowledge via RAG (Pinecone)
+📄 extracts structured data from unstructured PDFs
+📊 evaluates itself via KPI metrics
+🎯 generates real-world business outputs (leads & emails)
 
-🧠 LLM-powered reasoning (LangGraph agent loop)
-📄 OCR + document parsing
-🔎 RAG (Retrieval-Augmented Generation)
-📊 KPI tracking & evaluation
-🎯 Lead generation & outreach automation
+👉 This is not a pipeline — it is an AI agent system that thinks, acts, and improves.
 
-The system is built to simulate real-world enterprise workflows, where AI agents iteratively reason, select tools, validate outputs, and improve results.
+🚀 Why This Project Exists
 
-🧠 Key Concept: Agentic Workflow
+Real-world documents (contracts, invoices, procurement reports) are:
 
-Unlike traditional pipelines, this system uses a loop-based reasoning agent:
+unstructured
+inconsistent
+noisy
+context-dependent
 
-Analyze document
-Decide next action
-Call tools (OCR, extraction, validation, indexing)
-Evaluate results
-Repeat until complete
+Traditional systems fail because they:
 
-👉 This mimics how a human analyst works.
+follow rigid pipelines
+cannot adapt
+cannot self-correct
+💡 This system solves that by introducing:
 
-🏗️ System Architecture
-🔁 Agent Loop (LangGraph)
+Agentic reasoning loops over document workflows
 
-The workflow follows this structure:
+Instead of:
 
+parse → extract → done ❌
+
+We do:
+
+analyze → decide → act → evaluate → retry → finalize ✅
+🧠 Core Innovation: Agentic Loop
+🔁 The Brain of the System (LangGraph)
+
+The system is built around a reasoning loop:
+
+START
+  ↓
 document_intake
+  ↓
 clean_text
+  ↓
 classify_document
-agent_reasoning_loop
-tool_execution
+  ↓
+🧠 AGENT LOOP:
+    - analyze state
+    - decide next action
+    - call tool
+    - evaluate result
+    - repeat if needed
+  ↓
 extract_fields
+  ↓
 validate_document
+  ↓
 index_document
+  ↓
 log_kpis
+  ↓
+END
+🧠 What makes it "Agentic"?
 
-The agent dynamically decides:
+The agent:
 
-which tool to call
-when to retry
-when to stop
-🧩 Tech Stack
-Backend
-⚡ FastAPI
-🧠 LangChain + LangGraph
-🔍 Pinecone (vector DB)
-🧾 PDFPlumber + PyMuPDF
-🔤 Tesseract OCR (via pytesseract)
-📊 Pandas / NumPy
-🔗 LangSmith (tracing)
-Frontend
-⚛️ Next.js (App Router)
-🎨 TailwindCSS
-📊 Recharts
-🧩 Component-driven UI
+dynamically selects tools
+decides when extraction is sufficient
+retries on low confidence
+validates its own outputs
+stops based on reasoning (not fixed rules)
+🧩 System Capabilities
+📄 Document Intelligence
+OCR (scanned PDFs/images)
+semantic parsing
+metadata enrichment
+🔎 Retrieval-Augmented Generation (RAG)
+vector indexing (Pinecone)
+semantic search
+grounded answers
+📊 KPI Self-Evaluation
+field coverage
+schema validity
+extraction accuracy
+agent loop efficiency
+🧲 Lead Generation
+company discovery (LLM + search)
+context-aware email drafting
+human-in-the-loop (HITL)
+🧠 Explainability
+full agent trace
+tool usage logs
+reasoning visibility
+🏗️ Architecture Breakdown
+Backend (AI Engine)
+FastAPI → API layer
+LangGraph → agent orchestration
+LangChain → tool abstraction
+Pinecone → vector DB
+Tesseract → OCR
+Pydantic → schema validation
+Frontend (Control Panel)
+Next.js (App Router)
+TailwindCSS UI
+Recharts (KPI visualization)
 Infrastructure
-▲ Vercel (Frontend + Backend Serverless)
-🐍 Python 3.12
-📦 uv (dependency management)
+Vercel (Frontend + Serverless backend)
+Python 3.12
+uv (fast dependency resolution)
 📂 Project Structure
 agentic-document-understanding/
 │
 ├── backend/
 │   ├── app/
-│   │   ├── api/            # API routes
-│   │   ├── services/       # OCR, extraction, validation
-│   │   ├── workflows/      # LangGraph agent
-│   │   ├── models/         # schemas & enums
-│   │   └── core/           # config
+│   │   ├── api/          # REST endpoints
+│   │   ├── services/     # OCR, extraction, validation
+│   │   ├── workflows/    # LangGraph agent logic
+│   │   ├── models/       # schemas
+│   │   └── core/         # config
 │   │
-│   └── api/main.py         # Vercel entrypoint
+│   └── api/main.py       # Vercel entrypoint
 │
 ├── frontend/
 │   ├── app/
@@ -93,40 +142,51 @@ agentic-document-understanding/
 │   ├── components/
 │   └── lib/api.ts
 │
-├── agentic-doc.png         # Architecture diagram
-└── README.md
-⚙️ Features
-📄 Document Processing
-Upload PDFs or images
-OCR extraction (if needed)
-Structured parsing
-Metadata generation
-🧠 Agent Reasoning
-Multi-step decision loop
-Tool selection via LLM
-Iterative refinement
-Explainable trace output
-🔎 RAG System
-Document indexing in Pinecone
-Semantic search
-Grounded Q&A
-📊 KPI Tracking
-Field coverage
-Extraction accuracy
-Schema validity
-Agent loop count
-🧲 Lead Generation
-AI-powered company discovery
-Context-aware email drafting
-Human-in-the-loop (HITL)
-🖥️ UI Pages
-Dashboard → system overview + KPIs
-Upload → document ingestion
-Ask Docs → RAG querying
-KPIs → metrics analysis
-Leads → outreach generation
-Graph → agent workflow visualization
-🔌 API Endpoints
+└── agentic-doc.png
+🧠 How the Agent Thinks (Critical Section)
+
+Each run produces a trace like this:
+
+{
+  "loop": 1,
+  "decision": "Extract financial fields",
+  "tool": "extract_financial_data",
+  "confidence": 0.72
+}
+{
+  "loop": 2,
+  "decision": "Validate extraction",
+  "result": "schema mismatch",
+  "action": "retry extraction"
+}
+{
+  "loop": 3,
+  "decision": "Finalize",
+  "confidence": 0.94
+}
+
+👉 This enables:
+
+debugging AI decisions
+measuring reasoning quality
+improving system behavior
+📊 KPI System
+Why KPIs matter
+
+Most AI systems don’t measure themselves.
+
+This one does.
+
+Metrics
+Metric	Meaning
+Field Coverage	% of extracted fields
+Extraction Accuracy	correctness of outputs
+Schema Validity	structural correctness
+Loop Count	reasoning efficiency
+Example
+field_coverage = filled_fields / total_fields
+accuracy = correct_fields / extracted_fields
+🔌 API Overview
 Documents
 POST /documents/upload
 GET /documents/history
@@ -139,84 +199,67 @@ POST /leads/search
 POST /leads/draft-email
 Graph
 GET /graph/export
-🧪 Local Setup
-1. Clone repo
+🖥️ UI Overview
+Page	Purpose
+Dashboard	system overview
+Upload	document ingestion
+Ask Docs	RAG querying
+KPIs	evaluation metrics
+Leads	outreach generation
+Graph	agent visualization
+⚙️ Local Setup
 git clone https://github.com/promzyadiole/agentic-document-understanding.git
 cd agentic-document-understanding
-2. Backend setup
+Backend
 cd backend
 uv venv
 source .venv/bin/activate
 uv sync
 uvicorn app.main:app --reload
-3. Frontend setup
+Frontend
 cd frontend
 npm install
 npm run dev
 🔑 Environment Variables
+OPENAI_API_KEY=
+PINECONE_API_KEY=
+INDEX_NAME=
 
-Create .env in backend:
-
-OPENAI_API_KEY=your_key
-PINECONE_API_KEY=your_key
-INDEX_NAME=agentic-docs
-TAVILY_API_KEY=your_key
-LANGSMITH_API_KEY=your_key
+TAVILY_API_KEY=
+LANGSMITH_API_KEY=
 
 OPENAI_MODEL=gpt-4.1-mini
 OPENAI_EMBEDDING_MODEL=text-embedding-3-large
-🚀 Deployment
-Frontend (Vercel)
-Root directory: frontend
-Backend (Vercel)
-Root directory: backend
-Entry point: api/main.py
-Python version: 3.12
-📈 KPI Formula Examples
-Field Coverage
-filled_fields / total_fields
-Extraction Accuracy
-correct_fields / extracted_fields
-Schema Validity
-valid_fields / total_fields
-Agent Efficiency
-1 / loop_count
-🔍 Explainability
+🚀 Deployment Strategy
+Frontend
+Vercel
+Root: frontend
+Backend
+Vercel serverless
+Root: backend
+Entry: api/main.py
+Python: 3.12
+⚠️ Known Limitations
+Tesseract may require custom deployment
+File system is ephemeral on Vercel
+Large document processing can be slow
+Pinecone index must be pre-configured
+🔮 Future Work
 
-Each document stores:
-
-agent decisions
-tool calls
-loop iterations
-validation outcomes
-
-👉 Visible in the Graph + Trace UI
-
-🎯 Use Cases
-Construction contract analysis
-Procurement document automation
-Financial report parsing
-Vendor intelligence & outreach
-Knowledge extraction pipelines
-🧠 Why This Project Matters
-
-This project demonstrates:
-
-Agentic AI system design
 Real-world LLM orchestration
-End-to-end AI product engineering
+
+RAG + tool usage integration
+
 Explainability & evaluation
-Production-ready architecture
+
+Full-stack AI product engineering
+
 👤 Author
 
 Promise Adiole
 
-⭐ Future Improvements
-Multi-agent collaboration
-Streaming reasoning traces
-Better OCR fallback strategies
-Fine-tuned extraction models
-Distributed processing
-📜 License
+⭐ Final Note
 
-MIT License
+This project is not about calling an LLM.
+
+It is about building a system that thinks.
