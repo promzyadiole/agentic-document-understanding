@@ -30,18 +30,13 @@ Traditional systems:
 
 - parse → extract → done ❌
 
-
+---
 ## ConstructionFlow AI:
 
 
 - analyze → decide → act → evaluate → retry → finalize ✅
 
-
 ---
-
-
----
-
 ## 🔁 Agentic Workflow
 
 ```text
@@ -70,6 +65,7 @@ log_kpis
   ↓
 END
 
+---
 
 ## ⚙️ Capabilities
 
