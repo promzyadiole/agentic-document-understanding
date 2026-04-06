@@ -30,7 +30,6 @@ Traditional systems:
 
 - parse → extract → done ❌
 
----
 ## ConstructionFlow AI:
 
 
