@@ -5,37 +5,41 @@
   <img src="./agentic-doc.png" width="85%" />
 </p>
 
+<p align="center">
+  <b>LLM-powered agent system for reasoning over real-world documents</b><br/>
+  Built with FastAPI • LangGraph • LangChain • Pinecone • Next.js
+</p>
+
 ---
 
-## 🚀 Overview
+## 🧠 What This Project Is
 
-ConstructionFlow AI is a **production-grade agentic system** for understanding and acting on real-world business documents.
+ConstructionFlow AI is a **production-grade agentic system** that goes beyond simple extraction.
 
-It goes beyond extraction pipelines by introducing an **AI reasoning loop** that:
+It introduces a **reasoning loop** where the system:
 
-- 🧠 interprets documents with LLM-driven decisions  
-- 🔎 retrieves context via RAG (Pinecone)  
-- 📄 extracts structured data from unstructured PDFs  
-- 📊 evaluates itself using KPI metrics  
-- 🎯 produces business outputs (lead generation & outreach)
+- 🧠 Understands documents  
+- 🔎 Retrieves context (RAG)  
+- ⚙️ Takes actions via tools  
+- 📊 Evaluates its own outputs  
+- 🔁 Improves through iteration  
 
 > This is not a pipeline.  
 > This is a system that **reasons, acts, validates, and improves**.
 
 ---
 
-## 🧠 Core Idea
+## ⚡ Key Features
 
-Traditional systems: 
-
-- parse → extract → done ❌
-
-## ConstructionFlow AI:
-
-
-- analyze → decide → act → evaluate → retry → finalize ✅
+- 🧠 **Agentic Reasoning Loop** (LangGraph-powered)
+- 🔎 **Retrieval-Augmented Generation (RAG)** with Pinecone
+- 📄 **OCR + Structured Extraction**
+- 📊 **Self-Evaluation via KPIs**
+- 🎯 **Lead Generation & Outreach Automation**
+- 🧠 **Explainability (full agent trace + logs)**
 
 ---
+
 ## 🔁 Agentic Workflow
 
 ```text
@@ -63,69 +67,80 @@ index_document
 log_kpis
   ↓
 END
+```
+
+---
+
+## 🧠 Core Idea
+
+**Traditional Systems**
+- parse → extract → done ❌
+
+**ConstructionFlow AI**
+- analyze → decide → act → evaluate → retry → finalize ✅
 
 ---
 
 ## ⚙️ Capabilities
 
 ### 📄 Document Intelligence
- - OCR (scanned PDFs/images)
- - semantic parsing
- - structured extraction
+- OCR (scanned PDFs/images)
+- semantic parsing
+- structured data extraction
 
 ### 🔎 Retrieval-Augmented Generation
- - Pinecone vector indexing
- - semantic search
- - grounded answers
+- Pinecone vector indexing
+- semantic search
+- grounded answers
 
 ### 📊 KPI Evaluation
- - field coverage
-OPENAI_API_KEY=
-PINECONE_API_KEY=
-INDEX_NAME=
-TAVILY_API_KEY=
-LANGSMITH_API_KEY= - schema validity
- - extraction accuracy
- - loop efficiencyOPENAI_API_KEY=
-PINECONE_API_KEY=
-INDEX_NAME=
-TAVILY_API_KEY=
-LANGSMITH_API_KEY=
+- field coverage
+- schema validity
+- extraction accuracy
+- loop efficiency
 
 ### 🧲 Lead Generation
-  - company discovery
-  - LLM-assisted outreach drafting
-  - human-in-the-loop approval
+- company discovery
+- LLM-assisted outreach drafting
+- human-in-the-loop approval
 
 ### 🧠 Explainability
- - full agent trace
- - decision transparency
- - tool usage logs
+- full agent trace
+- decision transparency
+- tool usage logs
 
+---
 
-## 🏗️ Architecture
+## 🏗️ Architecture Overview
 
-### Backend
- - FastAPI
- - LangGraph (agent loop)
- - LangChain (tools)
- - Pinecone (vector DB)
- - Tesseract (OCR)
- - Pydantic (validation)
+```text
+                ┌────────────────────┐
+                │   Frontend (Next)  │
+                └─────────┬──────────┘
+                          │
+                          ▼
+                ┌────────────────────┐
+                │   FastAPI Backend  │
+                └─────────┬──────────┘
+                          │
+        ┌─────────────────┼─────────────────┐
+        ▼                 ▼                 ▼
+ ┌────────────┐   ┌──────────────┐   ┌──────────────┐
+ │  LangGraph │   │  LangChain   │   │  OCR Engine  │
+ │ Agent Loop │   │    Tools     │   │ (Tesseract)  │
+ └────────────┘   └──────────────┘   └──────────────┘
+        │
+        ▼
+ ┌────────────────────┐
+ │ Pinecone Vector DB │
+ └────────────────────┘
+```
 
-### Frontend
- - Next.js (App Router)
- - TailwindCSS
- - Recharts
-
-### Infrastructure
- - Vercel (frontend + serverless backend)
- - Python 3.12
- - uv (dependency manager)
-
+---
 
 ## 📂 Project Structure
 
+```text
 agentic-document-understanding/
 │
 ├── backend/
@@ -143,10 +158,13 @@ agentic-document-understanding/
 │   └── lib/api.ts
 │
 └── agentic-doc.png
+```
 
+---
 
 ## 🧠 Agent Trace Example
 
+```json
 {
   "loop": 1,
   "decision": "Extract financial fields",
@@ -156,11 +174,7 @@ agentic-document-understanding/
 {
   "loop": 2,
   "decision": "Validate extraction",
-OPENAI_API_KEY=
-PINECONE_API_KEY=
-INDEX_NAME=
-TAVILY_API_KEY=
-LANGSMITH_API_KEY=  "result": "schema mismatch",
+  "result": "schema mismatch",
   "action": "retry extraction"
 }
 {
@@ -168,135 +182,135 @@ LANGSMITH_API_KEY=  "result": "schema mismatch",
   "decision": "Finalize",
   "confidence": 0.94
 }
-OPENAI_API_KEY=
-PINECONE_API_KEY=
-INDEX_NAME=
-TAVILY_API_KEY=
-LANGSMITH_API_KEY=
+```
+
+---
 
 ## 📊 KPI System
 
-> Key performance indicators used to evaluate the effectiveness of the Agentic Document Understanding pipeline.
+- **Field Coverage** → % of required fields extracted  
+- **Extraction Accuracy** → correctness vs ground truth  
+- **Schema Validity** → structural correctness  
+- **Loop Count** → reasoning efficiency  
 
-| 🧩 Metric            | 📖 Description                          |
-|---------------------|----------------------------------------|
-| **Field Coverage**   | % of required fields successfully extracted |
-| **Extraction Accuracy** | Accuracy of extracted values vs ground truth |
-| **Schema Validity**  | Conformance to expected JSON/schema structure |
-| **Loop Count**       | Number of reasoning iterations (efficiency metric) |
-
+---
 
 ## 🔌 API
 
-### 📄 Documents
-- **POST** `/documents/upload` — Upload and process documents  
-- **GET** `/documents/history` — Retrieve document history  
+### Documents
+- POST `/documents/upload`
+- GET `/documents/history`
 
-### ❓ Query (RAG)
-- **POST** `/query` — Ask questions over ingested documents  
+### Query
+- POST `/query`
 
-### 📊 KPIs
-- **GET** `/kpis` — Fetch system performance metrics  
+### KPIs
+- GET `/kpis`
 
-### 🎯 Leads
-- **POST** `/leads/search` — Discover relevant leads  
-- **POST** `/leads/draft-email` — Generate outreach emails  
+### Leads
+- POST `/leads/search`
+- POST `/leads/draft-email`
 
-### 🔗 Graph
-- **GET** `/graph/export` — Export agent workflow graph  
+### Graph
+- GET `/graph/export`
 
 ---
 
 ## 🖥️ UI
 
-### Pages & Purpose
-- **Dashboard** → System overview  
-- **Upload** → Document ingestion  
-- **Ask Docs** → RAG-based querying  
-- **KPIs** → Performance monitoring  
-- **Leads** → Outreach generation  
-- **Graph** → Agent workflow visualization  
+- Dashboard → system overview  
+- Upload → document ingestion  
+- Ask Docs → RAG queries  
+- KPIs → performance metrics  
+- Leads → outreach generation  
+- Graph → agent visualization  
 
 ---
 
 ## ⚙️ Local Setup
 
-### 1. Clone Repository
+### Clone Repository
 ```bash
 git clone https://github.com/promzyadiole/agentic-document-understanding.git
 cd agentic-document-understanding
+```
 
-## Backend
-
+### Backend
+```bash
 cd backend
-
-# Create virtual environment
 uv venv
 source .venv/bin/activate
-
-# Install dependencies
 uv sync
-
-# Run server
 uvicorn app.main:app --reload
+```
 
-##Frontend
-
+### Frontend
+```bash
 cd frontend
-
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
+```
 
+---
 
 ## 🔑 Environment Variables
-Create a .env file in the backend directory:
 
+Create `.env` in backend:
+
+```
 OPENAI_API_KEY=
 PINECONE_API_KEY=
 INDEX_NAME=
 TAVILY_API_KEY=
 LANGSMITH_API_KEY=
+```
 
+---
 
 ## 🚀 Deployment
-### Frontend
-- Vercel → frontend/
 
-### Backend
-- Vercel Serverless → backend/
+Frontend:
+- Vercel → `frontend/`
+
+Backend:
+- Vercel Serverless → `backend/`
 - Python 3.12
-- Entry: api/main.py
+- Entry: `api/main.py`
 
+---
 
 ## ⚠️ Limitations
-- OCR depends on environment (Tesseract)
-- serverless file system is ephemeral
-- large documents may be slow
 
+- OCR depends on Tesseract environment  
+- Serverless filesystem is ephemeral  
+- Large documents may introduce latency  
 
-##🔮 Future Work
-- multi-agent orchestration
-- streaming reasoning traces
-- improved OCR fallback
-- persistent storage layer
+---
 
+## 🔮 Future Work
 
-##👤 Author
+- multi-agent orchestration  
+- streaming reasoning traces  
+- improved OCR fallback  
+- persistent storage layer  
 
-- Promise Adiole
+---
+
+## 👤 Author
+
+**Promise Adiole**
+
+---
 
 ## ⭐ Final Thought
 
 > This project is not about calling an LLM.
-
+>
 > It is about building a system that can:
-
-- → reason
-- → act
-- → validate
-- → improve
-
+>
+> - **Reason**
+> - **Act**
+> - **Validate**
+> - **Improve**
+>
 > in real-world document workflows.
