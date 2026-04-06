@@ -168,5 +168,115 @@
         }
       ]
     }
+  },
+  {
+    "document_id": "e61ddfe22bb7485fab4c62161fff3a22_financial-statement-data-sets",
+    "filename": "e61ddfe22bb7485fab4c62161fff3a22_financial-statement-data-sets.pdf",
+    "content_type": "application/pdf",
+    "page_count": 10,
+    "project_id": "default",
+    "document_type": "financial_report",
+    "classification_confidence": 0.95,
+    "validation_status": "warning",
+    "agent_trace": {
+      "agent_action": "finish",
+      "agent_reasoning": "Validation is done with a good score and KPIs have been logged; workflow is complete.",
+      "steps_taken": [
+        "document_intake",
+        "classify_document",
+        "index_document",
+        "extract_fields",
+        "validate_document",
+        "log_kpis"
+      ],
+      "loop_count": 6,
+      "history": [
+        {
+          "action": "classify_document",
+          "reasoning": "Classification is missing and cleaned text is available, so classify_document is the next step.",
+          "loop_count": 1
+        },
+        {
+          "action": "index_document",
+          "reasoning": "Text is cleaned and classified, but document has not been indexed yet.",
+          "loop_count": 2
+        },
+        {
+          "action": "extract_fields",
+          "reasoning": "Classification exists and is confident, extraction is missing.",
+          "loop_count": 3
+        },
+        {
+          "action": "validate_document",
+          "reasoning": "Extraction exists but validation is missing, so validate_document is the next step.",
+          "loop_count": 4
+        },
+        {
+          "action": "log_kpis",
+          "reasoning": "Validation exists and KPIs have not yet been logged",
+          "loop_count": 5
+        },
+        {
+          "action": "finish",
+          "reasoning": "Validation is done with a good score and KPIs have been logged; workflow is complete.",
+          "loop_count": 6
+        }
+      ]
+    }
+  },
+  {
+    "document_id": "4801b2442ed74dc8ad31b7a7bddf2cd7_sample invoice",
+    "filename": "4801b2442ed74dc8ad31b7a7bddf2cd7_sample invoice.png",
+    "content_type": "image/png",
+    "page_count": 1,
+    "project_id": "default",
+    "document_type": "invoice",
+    "classification_confidence": 0.95,
+    "validation_status": "fail",
+    "agent_trace": {
+      "agent_action": "finish",
+      "agent_reasoning": "Validation exists with good score and KPIs logged; workflow is complete.",
+      "steps_taken": [
+        "document_intake",
+        "classify_document",
+        "index_document",
+        "extract_fields",
+        "validate_document",
+        "log_kpis"
+      ],
+      "loop_count": 6,
+      "history": [
+        {
+          "action": "classify_document",
+          "reasoning": "Cleaned text is available but classification is missing, so classify_document is the next step.",
+          "loop_count": 1
+        },
+        {
+          "action": "index_document",
+          "reasoning": "Indexing has not happened yet and classification is known, so next step is to index the document.",
+          "loop_count": 2
+        },
+        {
+          "action": "extract_fields",
+          "reasoning": "Classification exists and is confident, extraction is missing, so extract fields next.",
+          "loop_count": 3
+        },
+        {
+          "action": "validate_document",
+          "reasoning": "Extraction exists but validation is missing, so validate_document is the next step.",
+          "loop_count": 4
+        },
+        {
+          "action": "log_kpis",
+          "reasoning": "Validation exists and KPIs have not yet been logged, so log KPIs next.",
+          "loop_count": 5
+        },
+        {
+          "action": "finish",
+          "reasoning": "Validation exists with good score and KPIs logged; workflow is complete.",
+          "loop_count": 6
+        }
+      ]
+    }
   }
 ]

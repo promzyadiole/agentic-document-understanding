@@ -688,5 +688,97 @@
       "validation_score": 0.75,
       "issue_count": 1
     }
+  },
+  {
+    "kpi_name": "field_coverage",
+    "value": 1.0,
+    "document_id": "e61ddfe22bb7485fab4c62161fff3a22_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-06T01:45:31.471648",
+    "metadata": {
+      "total_fields": 2,
+      "filled_fields": 2
+    }
+  },
+  {
+    "kpi_name": "extraction_accuracy",
+    "value": 0.95,
+    "document_id": "e61ddfe22bb7485fab4c62161fff3a22_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-06T01:45:31.471684",
+    "metadata": {
+      "proxy": "classification_confidence",
+      "document_type": "financial_report"
+    }
+  },
+  {
+    "kpi_name": "human_correction_rate",
+    "value": 0.5,
+    "document_id": "e61ddfe22bb7485fab4c62161fff3a22_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-06T01:45:31.471699",
+    "metadata": {
+      "definition": "low_confidence_field_rate",
+      "low_confidence_fields": 1,
+      "total_fields": 2
+    }
+  },
+  {
+    "kpi_name": "schema_validity",
+    "value": 0.5,
+    "document_id": "e61ddfe22bb7485fab4c62161fff3a22_financial-statement-data-sets",
+    "project_id": "default",
+    "timestamp": "2026-04-06T01:45:31.471721",
+    "metadata": {
+      "validation_status": "warning",
+      "validation_score": 0.9,
+      "issue_count": 1
+    }
+  },
+  {
+    "kpi_name": "field_coverage",
+    "value": 1.0,
+    "document_id": "4801b2442ed74dc8ad31b7a7bddf2cd7_sample invoice",
+    "project_id": "default",
+    "timestamp": "2026-04-06T01:47:48.687718",
+    "metadata": {
+      "total_fields": 5,
+      "filled_fields": 5
+    }
+  },
+  {
+    "kpi_name": "extraction_accuracy",
+    "value": 0.95,
+    "document_id": "4801b2442ed74dc8ad31b7a7bddf2cd7_sample invoice",
+    "project_id": "default",
+    "timestamp": "2026-04-06T01:47:48.687732",
+    "metadata": {
+      "proxy": "classification_confidence",
+      "document_type": "invoice"
+    }
+  },
+  {
+    "kpi_name": "human_correction_rate",
+    "value": 0.2,
+    "document_id": "4801b2442ed74dc8ad31b7a7bddf2cd7_sample invoice",
+    "project_id": "default",
+    "timestamp": "2026-04-06T01:47:48.687737",
+    "metadata": {
+      "definition": "low_confidence_field_rate",
+      "low_confidence_fields": 1,
+      "total_fields": 5
+    }
+  },
+  {
+    "kpi_name": "schema_validity",
+    "value": 0.0,
+    "document_id": "4801b2442ed74dc8ad31b7a7bddf2cd7_sample invoice",
+    "project_id": "default",
+    "timestamp": "2026-04-06T01:47:48.687745",
+    "metadata": {
+      "validation_status": "fail",
+      "validation_score": 0.75,
+      "issue_count": 1
+    }
   }
 ]
