@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Topbar from "@/components/topbar";
 import StatCard from "@/components/stat-card";
 import KpiChart from "@/components/kpi-chart";
@@ -7,22 +10,31 @@ import { BarChart3, Building2, FileText, Workflow } from "lucide-react";
 import Link from "next/link";
 import { getDocumentHistory, getKpis, getLatestDocument } from "@/lib/api";
 
-export default async function DashboardPage() {
-  let kpiData: any = null;
-  let historyData: any = null;
-  let latestDocumentData: any = null;
+export default function DashboardPage() {
+  const [kpiData, setKpiData] = useState<any>(null);
+  const [historyData, setHistoryData] = useState<any>(null);
+  const [latestDocumentData, setLatestDocumentData] = useState<any>(null);
+  const [error, setError] = useState("");
 
-  try {
-    kpiData = await getKpis();
-  } catch {}
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const [kpis, history, latest] = await Promise.all([
+          getKpis().catch(() => null),
+          getDocumentHistory().catch(() => null),
+          getLatestDocument().catch(() => null),
+        ]);
 
-  try {
-    historyData = await getDocumentHistory();
-  } catch {}
+        setKpiData(kpis);
+        setHistoryData(history);
+        setLatestDocumentData(latest);
+      } catch (err: any) {
+        setError(err.message || "Failed to load dashboard data");
+      }
+    }
 
-  try {
-    latestDocumentData = await getLatestDocument();
-  } catch {}
+    loadData();
+  }, []);
 
   const summary = kpiData?.summary || {};
   const averages = summary?.averages || {};
@@ -36,6 +48,12 @@ export default async function DashboardPage() {
         title="Dashboard"
         subtitle="Overview of document intelligence, KPI tracking, agent workflows, and lead generation."
       />
+
+      {error ? (
+        <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-red-700">
+          {error}
+        </div>
+      ) : null}
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <StatCard
@@ -65,28 +83,40 @@ export default async function DashboardPage() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <Link href="/upload" className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md">
+        <Link
+          href="/upload"
+          className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+        >
           <h3 className="text-lg font-semibold">Upload & Process</h3>
           <p className="mt-2 text-sm text-gray-600">
             Process procurement, financial, and construction-related documents end to end.
           </p>
         </Link>
 
-        <Link href="/ask" className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md">
+        <Link
+          href="/ask"
+          className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+        >
           <h3 className="text-lg font-semibold">Ask Documents</h3>
           <p className="mt-2 text-sm text-gray-600">
             Ask grounded questions over indexed PDFs and document corpora.
           </p>
         </Link>
 
-        <Link href="/kpis" className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md">
+        <Link
+          href="/kpis"
+          className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+        >
           <h3 className="text-lg font-semibold">KPIs</h3>
           <p className="mt-2 text-sm text-gray-600">
             Inspect extraction coverage, validation quality, and runtime metrics.
           </p>
         </Link>
 
-        <Link href="/leads" className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md">
+        <Link
+          href="/leads"
+          className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+        >
           <h3 className="text-lg font-semibold">Leads & Outreach</h3>
           <p className="mt-2 text-sm text-gray-600">
             Discover candidate construction companies and draft controlled outreach emails.
