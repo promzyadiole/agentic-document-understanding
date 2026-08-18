@@ -13,12 +13,13 @@ router = APIRouter()
 @router.get("/export")
 def export_graph():
     try:
+        settings = get_settings()
         graph_path = save_workflow_graph_png()
         filename = Path(graph_path).name
         return {
             "message": "Workflow graph exported successfully.",
             "graph_path": graph_path,
-            "image_url": f"http://127.0.0.1:8000/graph/file/{filename}",
+            "image_url": f"{settings.public_base_url.rstrip('/')}/graph/file/{filename}",
         }
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc)) from exc

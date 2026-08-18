@@ -1,0 +1,11 @@
+# Netlify config for the Next.js frontend (lives in ./frontend).
+# In the Netlify UI, set the environment variable:
+#   NEXT_PUBLIC_API_BASE_URL = https://<your-render-service>.onrender.com
+# so the frontend talks to the Render backend.
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

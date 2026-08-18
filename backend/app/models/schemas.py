@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import datetime
+from enum import Enum
 from typing import Any
 
 from pydantic import BaseModel, Field
@@ -181,6 +182,8 @@ class KPIRecord(BaseModel):
 class LeadCompany(BaseModel):
     company_name: str
     website: str | None = None
+    email: str | None = None
+    contact_url: str | None = None
     location: str | None = None
     summary: str = ""
     relevance_score: float = Field(default=0.0, ge=0.0, le=1.0)
@@ -208,3 +211,148 @@ class EmailDraftRequest(BaseModel):
     website: str | None = None
     location: str | None = None
     recipient_email: str | None = None
+
+
+# --- Outreach approval + proposal generation ---------------------------------
+
+
+class OutreachStatus(str, Enum):
+    DRAFTED = "drafted"
+    APPROVED = "approved"
+    SENT = "sent"
+    REJECTED = "rejected"
+
+
+class OutreachDraft(BaseModel):
+    id: str
+    company_name: str
+    recipient_email: str | None = None
+    website: str | None = None
+    location: str | None = None
+    summary: str = ""
+    subject: str
+    body: str
+    # "outreach" (cold email → proposal) or "thank_you" (post-payment).
+    kind: str = "outreach"
+    status: OutreachStatus = OutreachStatus.DRAFTED
+    proposal_id: str | None = None
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=datetime.utcnow)
+
+
+class CreateOutreachRequest(BaseModel):
+    company_name: str
+    company_summary: str = ""
+    website: str | None = None
+    location: str | None = None
+    recipient_email: str | None = None
+
+
+class ApproveOutreachRequest(BaseModel):
+    # The human can edit the recipient/subject/body before approving.
+    recipient_email: str | None = None
+    subject: str | None = None
+    body: str | None = None
+
+
+class ProposalHero(BaseModel):
+    eyebrow: str
+    headline: str
+    subheadline: str
+
+
+class ProposalItem(BaseModel):
+    title: str
+    description: str
+
+
+class ProposalStep(BaseModel):
+    description: str
+
+
+class ProposalContent(BaseModel):
+    hero: ProposalHero
+    deliverables: list[ProposalItem] = Field(default_factory=list)
+    process: list[ProposalStep] = Field(default_factory=list)
+    pricing_framing: str = ""
+    scope_summary: str = ""
+
+
+class Proposal(BaseModel):
+    id: str
+    company_name: str
+    website: str | None = None
+    company_context: str | None = None
+    price_cents: int = 0
+    currency: str = "usd"
+    brief: str = ""
+    content: ProposalContent
+    status: str = "draft"
+    share_token: str
+    outreach_id: str | None = None
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+
+class GenerateProposalRequest(BaseModel):
+    company_name: str
+    website: str | None = None
+    price_cents: int = Field(default=500000, ge=0)
+    currency: str = "usd"
+    brief: str = ""
+    outreach_id: str | None = None
+
+
+# --- Revenue / payments -------------------------------------------------------
+
+
+class PaymentStatus(str, Enum):
+    PENDING = "pending"
+    CONFIRMED = "confirmed"
+
+
+class Payment(BaseModel):
+    id: str
+    proposal_id: str | None = None
+    company_name: str = ""
+    amount_cents: int = 0
+    currency: str = "usd"
+    status: PaymentStatus = PaymentStatus.PENDING
+    # Set once the returned proposal PDF has been run through the document workflow.
+    document_id: str | None = None
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    confirmed_at: datetime | None = None
+
+
+class RegisterPaymentRequest(BaseModel):
+    proposal_id: str | None = None
+    company_name: str | None = None
+    amount_cents: int = Field(ge=0)
+    currency: str = "usd"
+
+
+# --- Inbound contact ----------------------------------------------------------
+
+
+class EmailClassification(BaseModel):
+    category: str = "other"
+    priority: str = "medium"
+    suggested_action: str = ""
+    summary: str = ""
+
+
+class InboundMessage(BaseModel):
+    id: str
+    name: str
+    email: str
+    company: str | None = None
+    message: str
+    classification: EmailClassification | None = None
+    document_id: str | None = None
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+
+class ContactRequest(BaseModel):
+    name: str
+    email: str
+    company: str | None = None
+    message: str

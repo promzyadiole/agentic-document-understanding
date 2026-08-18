@@ -1,10 +1,13 @@
 import "./globals.css";
-import Sidebar from "@/components/sidebar";
 
 export const metadata = {
-  title: "ConstructionFlow AI",
-  description: "Agentic document understanding frontend",
+  title: "Proziem Digital Global — AI, Automation & Digital Growth",
+  description:
+    "Proziem Digital Global builds AI systems and digital products: agentic document understanding, LLM/RAG applications, computer vision, robotics, and digital growth.",
 };
+
+// Set the theme before first paint to avoid a flash of the wrong theme.
+const themeScript = `(function(){try{var t=localStorage.getItem('cf-theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`;
 
 export default function RootLayout({
   children,
@@ -12,13 +15,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="bg-gray-50 text-gray-900 antialiased">
-        <div className="flex min-h-screen">
-          <Sidebar />
-          <main className="flex-1 p-6 lg:p-8">{children}</main>
-        </div>
-      </body>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="min-h-screen">{children}</body>
     </html>
   );
 }

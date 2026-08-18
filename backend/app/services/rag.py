@@ -62,6 +62,11 @@ def upsert_chunks(
     for chunk, embedding in zip(chunks, embeddings):
         base_metadata = {
             "document_id": chunk.document_id,
+            # Full chunk text so retrieval answers from complete context, not a
+            # truncated preview. Chunks are capped at ~1200 chars, well within
+            # Pinecone's per-vector metadata limit. `preview` is kept for compact
+            # source excerpts in the UI.
+            "text": chunk.text,
             "preview": chunk.text[:300],
             **(chunk.metadata or {}),
         }
@@ -150,15 +155,17 @@ def answer_with_rag(
     context_blocks = []
     sources: list[QuerySource] = []
 
-    for match in matches:
+    for i, match in enumerate(matches, start=1):
         md = match.get("metadata", {})
-        text = md.get("preview", "")
+        # Prefer full chunk text; fall back to preview for vectors indexed
+        # before this upgrade.
+        full_text = md.get("text") or md.get("preview", "")
         document_id = md.get("document_id", "unknown")
         filename = md.get("filename")
         page = md.get("page")
 
         context_blocks.append(
-            f"[Document ID: {document_id} | Page: {page}]\n{text}"
+            f"[Source {i} | Document: {filename or document_id} | Page: {page}]\n{full_text}"
         )
 
         sources.append(
@@ -166,7 +173,7 @@ def answer_with_rag(
                 document_id=document_id,
                 filename=filename,
                 page=page,
-                excerpt=text[:300],
+                excerpt=full_text[:300],
             )
         )
 
@@ -176,6 +183,7 @@ def answer_with_rag(
 You are a grounded document intelligence assistant.
 
 Answer the user's question using ONLY the context below.
+Cite the sources you use inline with their number, e.g. [Source 1].
 If the answer is not in the context, say so clearly.
 Do not fabricate details.
 Be concise but useful.

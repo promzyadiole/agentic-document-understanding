@@ -21,9 +21,52 @@ def extract_document_data(
     text: str,
     document_type: DocumentType,
     classification_confidence: float | None = None,
+    *,
+    use_llm: bool = True,
+    feedback: str | None = None,
 ) -> ExtractionResult:
     """
-    Main extraction entrypoint.
+    Main extraction entrypoint (hybrid).
+
+    Primary path is schema-constrained LLM extraction, which is accurate across
+    varied layouts and produces auditable evidence spans. If the LLM call fails
+    (network, quota, parse error) we transparently fall back to the deterministic
+    regex extractor so the pipeline never hard-fails. ``feedback`` is forwarded
+    to the LLM to support the self-correcting agent loop.
+    """
+    if use_llm:
+        try:
+            # Lazy import to avoid a circular dependency (llm_extraction imports
+            # normalizers from this module).
+            from app.services.llm_extraction import llm_extract_document_data
+
+            return llm_extract_document_data(
+                document_id=document_id,
+                text=text,
+                document_type=document_type,
+                classification_confidence=classification_confidence,
+                feedback=feedback,
+            )
+        except Exception:
+            # Fall through to the regex extractor below.
+            pass
+
+    return regex_extract_document_data(
+        document_id=document_id,
+        text=text,
+        document_type=document_type,
+        classification_confidence=classification_confidence,
+    )
+
+
+def regex_extract_document_data(
+    document_id: str,
+    text: str,
+    document_type: DocumentType,
+    classification_confidence: float | None = None,
+) -> ExtractionResult:
+    """
+    Deterministic regex-based extraction (fallback path).
     Dispatches extraction based on classified document type.
     """
     if document_type == DocumentType.PURCHASE_ORDER:

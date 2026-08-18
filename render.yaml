@@ -1,0 +1,28 @@
+# Render blueprint for the ConstructionFlow AI / Proziem backend.
+# Deploy: push to GitHub, then in Render → New → Blueprint → pick this repo.
+# Set the `sync: false` secrets in the Render dashboard after the first deploy.
+services:
+  - type: web
+    name: proziem-constructionflow-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: PINECONE_API_KEY
+        sync: false
+      - key: TAVILY_API_KEY
+        sync: false
+      - key: INDEX_NAME
+        value: agentic-document-understanding
+      # Comma-separated Netlify origin(s), e.g. https://proziem.netlify.app
+      - key: FRONTEND_ORIGINS
+        sync: false
+      # This service's own public URL, e.g. https://proziem-constructionflow-api.onrender.com
+      - key: PUBLIC_BASE_URL
+        sync: false

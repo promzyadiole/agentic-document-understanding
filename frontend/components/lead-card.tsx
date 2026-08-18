@@ -1,44 +1,80 @@
+"use client";
+
+import { Building2, ExternalLink, Mail, MapPin, AtSign } from "lucide-react";
+import { Badge } from "@/components/ui";
+
 export default function LeadCard({
   lead,
   onDraft,
+  drafting = false,
 }: {
   lead: any;
   onDraft: (lead: any) => void;
+  drafting?: boolean;
 }) {
+  const score = Number(lead.relevance_score || 0);
+  const tone = score >= 0.75 ? "ok" : score >= 0.5 ? "warn" : "neutral";
+
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+    <div className="card card-hover flex flex-col p-5">
       <div className="flex items-start justify-between gap-3">
-        <div>
-          <h3 className="text-lg font-semibold text-gray-900">{lead.company_name}</h3>
-          <p className="mt-1 text-sm text-gray-500">{lead.location || "Unknown location"}</p>
+        <div className="flex items-start gap-3">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-soft text-brand">
+            <Building2 size={18} />
+          </span>
+          <div className="min-w-0">
+            <h3 className="text-sm font-semibold text-text">{lead.company_name}</h3>
+            {lead.location ? (
+              <p className="mt-0.5 flex items-center gap-1 text-xs text-text-muted">
+                <MapPin size={11} /> {lead.location}
+              </p>
+            ) : null}
+          </div>
         </div>
-        <div className="rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700">
-          {lead.relevance_score}
-        </div>
+        <Badge tone={tone as any}>{Math.round(score * 100)}% fit</Badge>
       </div>
 
-      <p className="mt-4 text-sm leading-6 text-gray-600">{lead.summary}</p>
+      <p className="mt-4 line-clamp-4 text-sm leading-relaxed text-text-muted">{lead.summary}</p>
 
-      {lead.website ? (
-        <p className="mt-3 text-sm text-gray-500">{lead.website}</p>
-      ) : null}
+      <div className="mt-3 space-y-1">
+        {lead.website ? (
+          <a
+            href={lead.website.startsWith("http") ? lead.website : `https://${lead.website}`}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-1 truncate text-xs font-medium text-brand hover:text-brand-strong"
+          >
+            <ExternalLink size={12} className="shrink-0" /> <span className="truncate">{lead.website}</span>
+          </a>
+        ) : null}
+        {lead.email ? (
+          <p className="flex items-center gap-1 text-xs text-text-muted">
+            <AtSign size={12} className="shrink-0 text-ok" /> {lead.email}
+          </p>
+        ) : (
+          <p className="flex items-center gap-1 text-xs text-text-faint">
+            <AtSign size={12} className="shrink-0" /> no public email found
+          </p>
+        )}
+      </div>
 
       {Array.isArray(lead.evidence) && lead.evidence.length > 0 ? (
-        <div className="mt-4 space-y-2">
-          <p className="text-sm font-medium text-gray-800">Evidence</p>
-          <ul className="list-disc space-y-1 pl-5 text-sm text-gray-600">
-            {lead.evidence.slice(0, 3).map((item: string, idx: number) => (
-              <li key={idx}>{item}</li>
-            ))}
-          </ul>
-        </div>
+        <ul className="mt-4 space-y-1.5">
+          {lead.evidence.slice(0, 3).map((item: string, idx: number) => (
+            <li key={idx} className="flex gap-2 text-xs text-text-muted">
+              <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-brand" />
+              {item}
+            </li>
+          ))}
+        </ul>
       ) : null}
 
       <button
         onClick={() => onDraft(lead)}
-        className="mt-5 rounded-xl bg-black px-4 py-2 text-sm text-white transition hover:opacity-90"
+        disabled={drafting}
+        className="btn btn-ghost mt-5 w-full"
       >
-        Draft email
+        <Mail size={15} /> {drafting ? "Drafting…" : "Draft outreach for approval"}
       </button>
     </div>
   );

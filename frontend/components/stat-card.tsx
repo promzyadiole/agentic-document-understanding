@@ -5,24 +5,28 @@ export default function StatCard({
   value,
   description,
   icon: Icon,
+  accent = false,
 }: {
   title: string;
   value: string;
   description: string;
   icon: LucideIcon;
+  accent?: boolean;
 }) {
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm text-gray-500">{title}</p>
-          <p className="mt-2 text-3xl font-semibold text-gray-900">{value}</p>
-        </div>
-        <div className="rounded-2xl bg-gray-100 p-3">
-          <Icon size={20} className="text-gray-700" />
-        </div>
+    <div className="card card-hover p-5">
+      <div className="flex items-start justify-between">
+        <p className="label-caps">{title}</p>
+        <span
+          className={`flex h-9 w-9 items-center justify-center rounded-xl ${
+            accent ? "bg-brand text-white" : "bg-brand-soft text-brand"
+          }`}
+        >
+          <Icon size={17} />
+        </span>
       </div>
-      <p className="mt-3 text-sm text-gray-600">{description}</p>
+      <p className="mt-3 text-3xl font-bold tracking-tight text-text">{value}</p>
+      <p className="mt-1.5 text-xs leading-relaxed text-text-muted">{description}</p>
     </div>
   );
 }

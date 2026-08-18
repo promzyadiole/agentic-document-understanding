@@ -1,0 +1,34 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	document_intake(document_intake)
+	agent_reason(agent_reason)
+	clean_text(clean_text)
+	classify_document(classify_document)
+	index_document(index_document)
+	extract_fields(extract_fields)
+	validate_document(validate_document)
+	log_kpis(log_kpis)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> document_intake;
+	agent_reason -. &nbsp;finish&nbsp; .-> __end__;
+	agent_reason -.-> classify_document;
+	agent_reason -.-> clean_text;
+	agent_reason -.-> extract_fields;
+	agent_reason -.-> index_document;
+	agent_reason -.-> log_kpis;
+	agent_reason -.-> validate_document;
+	classify_document --> agent_reason;
+	clean_text --> agent_reason;
+	document_intake --> agent_reason;
+	extract_fields --> agent_reason;
+	index_document --> agent_reason;
+	log_kpis --> agent_reason;
+	validate_document --> agent_reason;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

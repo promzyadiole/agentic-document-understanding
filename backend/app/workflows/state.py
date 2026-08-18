@@ -40,4 +40,10 @@ class DocumentWorkflowState(TypedDict, total=False):
     loop_count: int
     max_loops: int
 
+    # Self-correction: the agent re-extracts when validation fails, feeding the
+    # validation errors back into the extractor as guidance.
+    extraction_attempts: int
+    max_extraction_attempts: int
+    validation_feedback: str
+
     error: str

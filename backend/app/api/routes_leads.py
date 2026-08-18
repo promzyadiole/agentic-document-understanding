@@ -3,7 +3,7 @@ from fastapi import APIRouter, HTTPException
 from app.models.responses import EmailDraftResponse, LeadListResponse
 from app.models.schemas import EmailDraftRequest, LeadSearchRequest
 from app.services.email_drafting import draft_outreach_email
-from app.services.lead_research import search_construction_leads
+from app.services.lead_research import LeadSearchUnavailable, search_construction_leads
 
 router = APIRouter()
 
@@ -20,8 +20,11 @@ def search_leads(request: LeadSearchRequest):
             leads=leads,
             message="Lead search completed successfully.",
         )
+    except LeadSearchUnavailable as exc:
+        # Clean, user-facing message for transient provider/network issues.
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
     except Exception as exc:
-        raise HTTPException(status_code=500, detail=str(exc)) from exc
+        raise HTTPException(status_code=500, detail="Lead search failed. Please try again.") from exc
 
 
 @router.post("/draft-email", response_model=EmailDraftResponse)

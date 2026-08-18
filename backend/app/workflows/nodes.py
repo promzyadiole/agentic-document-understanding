@@ -6,7 +6,7 @@ from pathlib import Path
 from openai import OpenAI
 
 from app.core.config import get_settings
-from app.models.enums import DocumentType
+from app.models.enums import DocumentType, ValidationStatus
 from app.services.chunking import chunk_text
 from app.services.classifier import classify_document
 from app.services.extraction import extract_document_data
@@ -44,7 +44,10 @@ def document_intake_node(state: DocumentWorkflowState) -> DocumentWorkflowState:
         "namespace": parsed.metadata.project_id or "default",
         "steps_taken": ["document_intake"],
         "loop_count": 0,
-        "max_loops": state.get("max_loops", 8),
+        "max_loops": state.get("max_loops", 12),
+        "extraction_attempts": 0,
+        "max_extraction_attempts": state.get("max_extraction_attempts", 2),
+        "validation_feedback": "",
     }
 
 
@@ -67,6 +70,34 @@ def agent_reason_node(state: DocumentWorkflowState) -> DocumentWorkflowState:
                 "reasoning": reasoning,
                 "loop_count": loop_count + 1,
             }
+        ]
+        return {
+            **state,
+            "agent_action": action,
+            "agent_reasoning": reasoning,
+            "agent_history": updated_history,
+            "loop_count": loop_count + 1,
+        }
+
+    # --- Self-correction override ---------------------------------------
+    # If validation failed and we still have re-extraction budget, the agent
+    # deterministically chooses to re-extract with the validation feedback,
+    # rather than leaving it to chance. This is what makes the loop genuinely
+    # self-correcting instead of a fixed pipeline.
+    extraction_attempts = state.get("extraction_attempts", 0)
+    max_extraction_attempts = state.get("max_extraction_attempts", 2)
+    if (
+        validation is not None
+        and validation.overall_status == ValidationStatus.FAIL
+        and extraction_attempts < max_extraction_attempts
+    ):
+        action = "extract_fields"
+        reasoning = (
+            f"Validation failed (attempt {extraction_attempts}); "
+            "re-extracting with validation feedback to self-correct."
+        )
+        updated_history = agent_history + [
+            {"action": action, "reasoning": reasoning, "loop_count": loop_count + 1}
         ]
         return {
             **state,
@@ -242,17 +273,27 @@ def extract_fields_node(state: DocumentWorkflowState) -> DocumentWorkflowState:
             "steps_taken": steps_taken,
         }
 
+    attempts = state.get("extraction_attempts", 0)
+    feedback = state.get("validation_feedback") or None
+    is_retry = attempts >= 1
+
     extraction = extract_document_data(
         document_id=parsed.metadata.document_id,
         text=parsed.cleaned_text,
         document_type=classification.document_type,
         classification_confidence=classification.confidence_score,
+        feedback=feedback if is_retry else None,
     )
 
-    steps_taken = state.get("steps_taken", []) + ["extract_fields"]
+    step_label = "extract_fields_retry" if is_retry else "extract_fields"
+    steps_taken = state.get("steps_taken", []) + [step_label]
+
     return {
         **state,
         "extraction": extraction,
+        # Reset validation on a retry so the agent re-validates the new result.
+        "validation": None if is_retry else state.get("validation"),
+        "extraction_attempts": attempts + 1,
         "steps_taken": steps_taken,
     }
 
@@ -273,11 +314,21 @@ def validate_document_node(state: DocumentWorkflowState) -> DocumentWorkflowStat
         f"Validation status: {validation.overall_status.value}; validation score: {validation.score}"
     )
 
+    # Build human-readable feedback the extractor can act on during a retry.
+    feedback = ""
+    if validation.overall_status == ValidationStatus.FAIL and validation.issues:
+        feedback = "\n".join(
+            f"- {issue.field_name}: {issue.message}"
+            for issue in validation.issues
+            if issue.status == ValidationStatus.FAIL
+        )
+
     steps_taken = state.get("steps_taken", []) + ["validate_document"]
     return {
         **state,
         "extraction": extraction,
         "validation": validation,
+        "validation_feedback": feedback,
         "steps_taken": steps_taken,
     }
 

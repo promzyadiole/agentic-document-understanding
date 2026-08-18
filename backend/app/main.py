@@ -5,8 +5,12 @@ from app.api.routes_documents import router as documents_router
 from app.api.routes_graph import router as graph_router
 from app.api.routes_health import router as health_router
 from app.api.routes_kpi import router as kpi_router
+from app.api.routes_contact import router as contact_router
 from app.api.routes_leads import router as leads_router
+from app.api.routes_outreach import router as outreach_router
+from app.api.routes_proposals import router as proposals_router
 from app.api.routes_query import router as query_router
+from app.api.routes_revenue import router as revenue_router
 from app.core.config import get_settings
 
 settings = get_settings()
@@ -19,10 +23,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "https://agentic-document-understanding-two.vercel.app/",
-    ],
+    allow_origins=settings.cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -33,6 +34,10 @@ app.include_router(documents_router, prefix="/documents", tags=["documents"])
 app.include_router(query_router, prefix="/query", tags=["query"])
 app.include_router(kpi_router, prefix="/kpis", tags=["kpis"])
 app.include_router(leads_router, prefix="/leads", tags=["leads"])
+app.include_router(outreach_router, prefix="/outreach", tags=["outreach"])
+app.include_router(proposals_router, prefix="/proposals", tags=["proposals"])
+app.include_router(revenue_router, prefix="/revenue", tags=["revenue"])
+app.include_router(contact_router, prefix="/contact", tags=["contact"])
 app.include_router(graph_router, prefix="/graph", tags=["graph"])
 
 

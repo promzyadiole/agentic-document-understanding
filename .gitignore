@@ -223,4 +223,15 @@ frontend_backup/
 backend/app/data/uploads/
 backend/app/data/processed/
 backend/app/data/graph/
+# Guard against the historical cwd/UPLOAD_DIR path bug re-creating a nested tree
+backend/backend/
 .DS_Store
+
+# Local editor / assistant tooling (never part of the product)
+.claude/
+.vscode/
+CLAUDE.md
+AGENTS.md
+
+# Separate standalone app with its own repository
+Proposal Generator App/
