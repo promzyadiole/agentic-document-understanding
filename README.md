@@ -10,6 +10,12 @@
   FastAPI · LangGraph · LangChain · <b>OpenAI</b> · Pinecone · Tavily · Next.js
 </p>
 
+<p align="center">
+  <a href="https://proziem-constructionflow.netlify.app"><b>🌐 Live demo → proziem-constructionflow.netlify.app</b></a>
+  &nbsp;·&nbsp;
+  <a href="#-walkthrough">📸 Walkthrough</a>
+</p>
+
 ---
 
 ## 🧠 What this is
@@ -39,6 +45,62 @@ Nothing is a black box: every extracted field carries a source snippet, every ag
 - 💰 **Revenue tracking** — register & confirm payments; confirmed income increments on the dashboard.
 - 🔄 **Closed loop** — confirming a payment renders the proposal to PDF and runs it **through the document workflow**; a **thank-you email is drafted for your approval**.
 - 📥 **Inbound triage** — the landing-page Contact form classifies each message (category, priority, next action) and processes it through the workflow.
+
+---
+
+## 📸 Walkthrough
+
+Screenshots from a real run. The data is live output from the backend, not mockups.
+
+### 1. Landing page: the front door
+<img src="./docs/screenshots/01-landing.png" width="100%" />
+
+This is the public page for Proziem Digital Global. **Enter Platform** opens the app. The **Contact** form at the bottom sends inquiries to the Inbox (step 5), where they are classified and processed automatically.
+
+### 2. Dashboard: the overview
+<img src="./docs/screenshots/02-dashboard.png" width="100%" />
+
+The top row shows confirmed revenue, documents processed, average field coverage and schema validity. The **KPI averages** chart summarises extraction quality across every run. **Latest agent run** shows the controller's final decision and how many loops it took. Here it took 8, including a self-correction.
+
+### 3. Upload & Process: watch the agent think
+<img src="./docs/screenshots/03-upload.png" width="100%" />
+
+When you drop in an invoice, PO, delivery note or report, the LangGraph agent's reasoning streams live over **SSE** (left). At each loop the `agent_reason` hub checks the state and explains which tool it will call next. On the right, every extracted field shows a **confidence score** and a **Show evidence** link to the exact text snippet and page it came from. Line items are pulled into a table, and validation (schema, required fields, arithmetic) runs at the end. If validation fails, the agent re-extracts using the errors as feedback.
+
+### 4. Ask Documents: grounded Q&A
+<img src="./docs/screenshots/04-ask.png" width="100%" />
+
+This is RAG over the Pinecone index. Answers use **only** the retrieved chunks and cite them inline (`[Source N]`). The retrieved chunks are listed alongside so you can check the answer. If the context doesn't contain the answer, it says so: in this example, revenue wasn't in the retrieved chunks, and the model says that instead of guessing.
+
+### 5. Inbox: inbound triage
+<img src="./docs/screenshots/05-inbox.png" width="100%" />
+
+Every Contact-form message is classified by an LLM (category, priority, a one-line summary and a suggested next action). It is also run through the document workflow, so it becomes searchable like any other document.
+
+### 6. Workflow Graph: explainability
+<img src="./docs/screenshots/06-graph.png" width="100%" />
+
+This is the live LangGraph topology. Nodes visited by the latest run are highlighted. The **Agent reasoning trace** on the right lists every decision in order. In this run, loop 5 shows the self-correction: *"Validation failed (attempt 1); re-extracting with validation feedback."*
+
+### 7. Approvals: human-in-the-loop email
+<img src="./docs/screenshots/07-approvals.png" width="100%" />
+
+Nothing is sent automatically. Outreach emails and post-payment thank-you notes are drafted by the LLM and wait here. You can edit the recipient, subject and body, then **Approve** or **Reject**.
+
+### 8. Proposals: generated per company
+<img src="./docs/screenshots/08-proposals.png" width="100%" />
+
+Each proposal is written by the LLM after it reads the target company's website, so the pitch fits their business. Proposals move from **draft** to **paid** as payments are confirmed.
+
+### 9. Shareable proposal page: what the client sees
+<img src="./docs/screenshots/09-proposal-page.png" width="100%" />
+
+Each proposal gets a public, token-protected link (`/p/<token>`). The page includes a hero section, deliverables, process, pricing and terms, all written for that client (here, VINCI Construction).
+
+### 10. Revenue: closing the loop
+<img src="./docs/screenshots/10-revenue.png" width="100%" />
+
+Register a payment, then confirm it. Confirming does three things: it adds the amount to revenue, **renders the proposal to PDF and runs it through the document workflow** (see the *processed* / PASS status), and drafts a thank-you email in Approvals.
 
 ---
 
@@ -168,7 +230,7 @@ See [`backend/.env.example`](backend/.env.example) and [`frontend/.env.example`]
 
 ## 🚀 Deployment
 
-- **Frontend → Netlify** — [`netlify.toml`](netlify.toml) (base `frontend`, `@netlify/plugin-nextjs`). Set `NEXT_PUBLIC_API_BASE_URL` to the Render URL.
+- **Frontend → Netlify** — live at **https://proziem-constructionflow.netlify.app** · [`netlify.toml`](netlify.toml) (base `frontend`, `@netlify/plugin-nextjs`). Set `NEXT_PUBLIC_API_BASE_URL` to the Render URL.
 - **Backend → Render** — [`render.yaml`](render.yaml) + [`backend/Dockerfile`](backend/Dockerfile) (Docker image with Tesseract). Set the secret env vars in the Render dashboard.
 
 > Pinecone persists across deploys. The JSON stores (registry, KPIs, proposals, payments, inbound) are convenient for a demo but reset on a free-tier redeploy — attach a Render disk or a Postgres/Supabase layer for durable persistence.
